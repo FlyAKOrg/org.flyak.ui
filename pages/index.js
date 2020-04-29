@@ -1,4 +1,5 @@
-import Head from 'next/head'
+import React from 'react';
+import Head from 'next/head';
 
 export default function Home() {
   return (
@@ -10,11 +11,15 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to
+          {' '}
+          <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p className="description">
-          Get started by editing <code>pages/index.js</code>
+          Get started by editing
+          {' '}
+          <code>pages/index.js</code>
         </p>
 
         <div className="grid">
@@ -54,11 +59,14 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by <img src="/zeit.svg" alt="ZEIT Logo" />
+          Powered by
+          {' '}
+          <img src="/zeit.svg" alt="ZEIT Logo" />
         </a>
       </footer>
 
-      <style jsx>{`
+      <style jsx>
+        {`
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
@@ -183,9 +191,12 @@ export default function Home() {
             flex-direction: column;
           }
         }
-      `}</style>
+      `}
 
-      <style jsx global>{`
+      </style>
+
+      <style jsx global>
+        {`
         html,
         body {
           padding: 0;
@@ -198,7 +209,9 @@ export default function Home() {
         * {
           box-sizing: border-box;
         }
-      `}</style>
+      `}
+
+      </style>
     </div>
-  )
+  );
 }
