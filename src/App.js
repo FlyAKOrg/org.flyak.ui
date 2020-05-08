@@ -1,19 +1,17 @@
-import React from 'react';
-import {
-  Grommet,
-} from 'grommet';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import React from "react";
+import { Grommet } from "grommet";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./pages/Home";
 
 const theme = {
   global: {
     colors: {
-      brand: '#228BE6',
+      brand: "#228BE6",
     },
     font: {
-      family: 'Roboto',
-      size: '18px',
-      height: '20px',
+      family: "Roboto",
+      size: "18px",
+      height: "20px",
     },
   },
 };

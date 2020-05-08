@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Heading,
   Box,
@@ -6,8 +6,8 @@ import {
   Collapsible,
   Layer,
   ResponsiveContext,
-} from 'grommet';
-import { Notification, FormClose } from 'grommet-icons';
+} from "grommet";
+import { Notification, FormClose } from "grommet-icons";
 
 const AppBar = (props) => (
   <Box
@@ -16,9 +16,9 @@ const AppBar = (props) => (
     align="center"
     justify="between"
     background="brand"
-    pad={{ left: 'medium', right: 'small', vertical: 'small' }}
+    pad={{ left: "medium", right: "small", vertical: "small" }}
     elevation="medium"
-    style={{ zIndex: '1' }}
+    style={{ zIndex: "1" }}
     {...props}
   />
 );
@@ -39,11 +39,11 @@ export default () => {
             />
           </AppBar>
 
-          <Box direction="row" flex overflow={{ horizontal: 'hidden' }}>
+          <Box direction="row" flex overflow={{ horizontal: "hidden" }}>
             <Box flex align="center" justify="center">
               app body
             </Box>
-            {!showSidebar || size !== 'small' ? (
+            {!showSidebar || size !== "small" ? (
               <Collapsible direction="horizontal" open={showSidebar}>
                 <Box
                   flex
