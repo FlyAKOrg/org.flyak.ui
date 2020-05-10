@@ -1,6 +1,9 @@
 import React from "react";
-import { Grommet, Box, Text, Grid } from "grommet";
+import { Grommet, Box, Grid } from "grommet";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import { AuthProvider } from "context/auth/index";
+
 import Home from "./pages/Home";
 import Header from "./components/Header";
 
@@ -29,22 +32,24 @@ const Content = () => (
     ]}
   >
     <Box gridArea="header">
-      <Route path="/" component={Header} />
+      <Header />
     </Box>
     <Box gridArea="main">
       <Box gridArea="main" justify="center" align="center">
-        <Text>main</Text>
+        <Route path="/" component={Home} />
       </Box>
     </Box>
   </Grid>
 );
 
 const App = () => (
-  <Router>
-    <Grommet theme={theme} full>
-      <Content />
-    </Grommet>
-  </Router>
+  <AuthProvider>
+    <Router>
+      <Grommet theme={theme} full>
+        <Content />
+      </Grommet>
+    </Router>
+  </AuthProvider>
 );
 
 export default App;
