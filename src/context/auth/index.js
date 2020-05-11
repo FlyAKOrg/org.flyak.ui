@@ -12,7 +12,7 @@ function AuthProvider({ children }) {
     user: null,
   });
 
-  const callGetUser = React.useCallback(() => {
+  const updateAuthState = React.useCallback(() => {
     Request.get("/user").then(
       (user) => setState({ status: "success", error: null, user }),
       (error) => setState({ status: "error", error, user: null })
@@ -20,11 +20,11 @@ function AuthProvider({ children }) {
   }, []);
 
   React.useEffect(() => {
-    callGetUser();
-  }, [callGetUser]);
+    updateAuthState();
+  }, [updateAuthState]);
 
   return (
-    <AuthContext.Provider value={{ ...state, callGetUser }}>
+    <AuthContext.Provider value={{ ...state, updateAuthState }}>
       {state.status === "pending" ? "Loading..." : children}
     </AuthContext.Provider>
   );

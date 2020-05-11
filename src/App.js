@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { AuthProvider } from "context/auth/index";
 
-import Home from "./pages/Home";
-import Header from "./components/Header";
+import Login from "pages/Login";
+import Home from "pages/Home";
+import Header from "components/Header";
 
 const theme = {
   global: {
@@ -36,7 +37,8 @@ const Content = () => (
     </Box>
     <Box gridArea="main">
       <Box gridArea="main" justify="center" align="center">
-        <Route path="/" component={Home} />
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
       </Box>
     </Box>
   </Grid>
