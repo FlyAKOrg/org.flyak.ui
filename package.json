@@ -9,13 +9,17 @@
     "lint": "eslint . --ext .js"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "formik": "^2.1.4",
     "grommet": "^2.13.0",
     "grommet-icons": "^4.4.0",
+    "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "yup": "^0.28.5"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

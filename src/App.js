@@ -1,7 +1,12 @@
 import React from "react";
-import { Grommet } from "grommet";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import { Grommet, Box, Grid } from "grommet";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import { AuthProvider } from "context/auth/index";
+
+import Login from "pages/Login";
+import Home from "pages/Home";
+import Header from "components/Header";
 
 const theme = {
   global: {
@@ -16,16 +21,37 @@ const theme = {
   },
 };
 
+const Content = () => (
+  <Grid
+    fill
+    rows={["auto", "flex"]}
+    columns={["auto", "flex"]}
+    areas={[
+      ["header", "header"],
+      ["main", "main"],
+      ["footer", "footer"],
+    ]}
+  >
+    <Box gridArea="header">
+      <Header />
+    </Box>
+    <Box gridArea="main">
+      <Box gridArea="main" justify="center" align="center">
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+      </Box>
+    </Box>
+  </Grid>
+);
+
 const App = () => (
-  <Grommet theme={theme} full>
+  <AuthProvider>
     <Router>
-      <Switch>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+      <Grommet theme={theme} full>
+        <Content />
+      </Grommet>
     </Router>
-  </Grommet>
+  </AuthProvider>
 );
 
 export default App;
