@@ -3,43 +3,39 @@ import { Box, FormField, TextInput } from "grommet";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Request from "utils/request";
-import { useAuthState } from "context/auth";
-import { useHistory } from "react-router-dom";
-import { setToken } from "utils/auth";
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string().required("Required"),
   email: Yup.string().email("Must be a valid email address"),
+  name: Yup.string().required(),
 });
 
 export default () => {
-  const { updateAuthState } = useAuthState();
-  const history = useHistory();
-
   return (
     <Box align="center" fill>
       <Box width="medium" margin="large">
         <Formik
-          validateOnBlur
           initialValues={{
+            name: "",
             email: "",
             password: "",
           }}
           validationSchema={LoginSchema}
           onSubmit={async (values) => {
-            const response = await Request.post("/auth/login", {
-              email: values.email,
-              password: values.password,
-            });
-
-            setToken(response.data.token);
-
-            updateAuthState();
-            history.push("/");
+            await Request.post("/auth/register", values);
           }}
+          validateOnBlur
         >
           {({ values, errors, handleChange }) => (
             <Form>
+              <FormField label="Name" error={errors.name}>
+                <TextInput
+                  name="name"
+                  value={values.name || ""}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </FormField>
               <FormField label="Email" error={errors.email}>
                 <TextInput
                   name="email"
@@ -54,6 +50,7 @@ export default () => {
                   name="password"
                   value={values.password || ""}
                   onChange={handleChange}
+                  autoComplete="new-password"
                 />
               </FormField>
               <button type="submit">Submit</button>

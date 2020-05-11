@@ -4,18 +4,6 @@ import { useHistory } from "react-router-dom";
 
 import { useAuthState } from "context/auth";
 
-function renderLoginButton(isAuthenticated, history) {
-  function handleLoginClick() {
-    history.push("/login");
-  }
-
-  if (isAuthenticated) {
-    return <Anchor label="Sign out" href="#" />;
-  }
-
-  return <Anchor label="Sign in" onClick={handleLoginClick} />;
-}
-
 export default function () {
   const { isAuthenticated } = useAuthState();
   const history = useHistory();
@@ -24,7 +12,13 @@ export default function () {
     <Header background="light-2" pad="small">
       <Box gridArea="header" direction="row" gap="medium">
         <Anchor label="Home" href="#" />
-        {renderLoginButton(isAuthenticated, history)}
+        {isAuthenticated && <Anchor label="Sign out" href="#" />}
+        {!isAuthenticated && (
+          <Anchor label="Sign in" onClick={() => history.push("/login")} />
+        )}
+        {!isAuthenticated && (
+          <Anchor label="Register" onClick={() => history.push("/register")} />
+        )}
       </Box>
     </Header>
   );
