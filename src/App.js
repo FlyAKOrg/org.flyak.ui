@@ -9,7 +9,7 @@ import { AuthProvider } from "context/auth/index";
 import Login from "pages/Login";
 // import Home from "pages/Home";
 import Header from "components/Header";
-// import Register from "pages/Register";
+import Register from "pages/Register";
 
 const theme = createMuiTheme({
   palette: {
@@ -33,7 +33,7 @@ const Content = () => (
     <Header />
     {/* <Route exact path="/" component={Home} /> */}
     <Route path="/login" component={Login} />
-    {/* <Route path="/register" component={Register} /> */}
+    <Route path="/register" component={Register} />
   </Router>
 );
 
