@@ -1,11 +1,18 @@
 import React from "react";
-import { Box, FormField, TextInput } from "grommet";
 import * as Yup from "yup";
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import Request from "utils/request";
 import { useAuthState } from "context/auth";
 import { useHistory } from "react-router-dom";
 import { setToken } from "utils/auth";
+import { TextField } from "formik-material-ui";
+
+import Container from "@material-ui/core/Container";
+import Avatar from "@material-ui/core/Avatar";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string().required("Required"),
@@ -17,8 +24,14 @@ export default () => {
   const history = useHistory();
 
   return (
-    <Box align="center" fill>
-      <Box width="medium" margin="large">
+    <Container component="main" maxWidth="xs">
+      <Box mt={8} display="flex" flexDirection="column" alignItems="center">
+        <Avatar>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
         <Formik
           validateOnBlur
           initialValues={{
@@ -38,29 +51,44 @@ export default () => {
             history.push("/");
           }}
         >
-          {({ values, errors, handleChange }) => (
+          {({ isSubmitting }) => (
             <Form>
-              <FormField label="Email" error={errors.email}>
-                <TextInput
-                  name="email"
-                  value={values.email || ""}
-                  onChange={handleChange}
-                  type="email"
-                />
-              </FormField>
-              <FormField label="Password" error={errors.password}>
-                <TextInput
-                  type="password"
-                  name="password"
-                  value={values.password || ""}
-                  onChange={handleChange}
-                />
-              </FormField>
-              <button type="submit">Submit</button>
+              <Field
+                component={TextField}
+                label="Email"
+                name="email"
+                type="email"
+                variant="outlined"
+                fullWidth
+                required
+                margin="normal"
+                autoComplete="email"
+                autoFocus
+              />
+              <Field
+                component={TextField}
+                label="Password"
+                name="password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                required
+                margin="normal"
+                autoComplete="current-password"
+              />
+              <Button
+                color="secondary"
+                variant="contained"
+                type="submit"
+                disabled={isSubmitting}
+                fullWidth
+              >
+                Login
+              </Button>
             </Form>
           )}
         </Formik>
       </Box>
-    </Box>
+    </Container>
   );
 };
