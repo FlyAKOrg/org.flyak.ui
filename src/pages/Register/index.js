@@ -77,7 +77,6 @@ export default () => {
                 required
                 margin="normal"
                 autoComplete="email"
-                autoFocus
               />
               <Field
                 component={TextField}
